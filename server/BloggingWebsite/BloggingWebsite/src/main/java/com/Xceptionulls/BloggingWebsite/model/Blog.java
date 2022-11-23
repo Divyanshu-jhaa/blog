@@ -1,6 +1,5 @@
 package com.Xceptionulls.BloggingWebsite.model;
 
-import jdk.jfr.Category;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
