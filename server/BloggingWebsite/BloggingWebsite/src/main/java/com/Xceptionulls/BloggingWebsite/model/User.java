@@ -45,9 +45,19 @@ public class User {
 
     private String name;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     private String email;
 
     private String password;
+
+    private String username;
 
 
 

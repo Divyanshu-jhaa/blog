@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/blog")
+@CrossOrigin
 public class BlogController {
     @Autowired
     private BlogService blogService;
+
     @GetMapping("/getAll")
     public List<Blog> list(){
         return blogService.listAll();

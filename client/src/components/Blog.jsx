@@ -11,21 +11,30 @@ import {
     SimpleGrid,
     Heading,
     Divider,
-    Image
+    Image,
+    Circle
 } from "@chakra-ui/react";
+import { useState } from 'react';
+import axios from 'axios';
 const Blog = (prop) => {
+    const { user_id, category_id, post_id, title, content1, content2, content3, content4, content5, image, date, users } = prop;
+    let user = users.find((x) => x.user_id === user_id);
     return (
         <>
-            <Box display='flex' w={['0em', '30em', '48em', '62em', '65em', '70em']} bg='gray.400' flexDirection='column' p='1rem' borderRadius='3px'>
-                <Image h={['5em', '15em', '25em', '25em', '25em', '30em']} src='https://img.freepik.com/free-vector/blockchain-technology-security-template-vector-data-payment-securing-blog-banner_53876-112174.jpg?w=2000'></Image>
-                <Heading fontWeight='normal' textAlign='start' m='5px'>Heading</Heading>
-                <Divider />
-                <Heading fontWeight='normal' fontSize='3xl' mt='7px' mb='15px'>Sub heading</Heading>
-                <Text >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat repellendus nemo maxime possimus molestias, commodi quis similique culpa, pariatur, maiores officia? Laborum eaque neque ratione voluptatibus incidunt repudiandae nulla explicabo, ex corrupti deleniti totam eum vel at tenetur amet accusantium fugit accusamus voluptatum obcaecati, sit impedit! Perferendis eum vitae iusto quibusdam explicabo doloribus minima voluptate repellat, autem amet qui fugiat ad maxime sequi, delectus sed eius dignissimos facilis earum voluptatibus quis quidem. Tempora odit earum eos animi ullam quasi sequi exercitationem. Laboriosam nobis hic omnis iure quis quidem unde inventore commodi dolorum veritatis doloribus, fugiat assumenda quaerat molestias sunt deleniti!</Text>
-                <Divider />
-                <Box display='flex' justifyContent='center' alignItems='center'><Button w='100px'>Read More</Button></Box>
-            </Box>
+            <Box display='flex' w={['0em', '30em', '48em', '62em', '65em', '70em']} bg='gray.400' flexDirection='column' p='1rem' borderRadius='3px' mt='1rem'>
+                <Box w={['0em', '30em', '48em', '62em', '65em', '70em']} mb='1rem' display='flex'> <Circle size='40px' bg='white' color='white' mr='8px'>
 
+                </Circle><Heading>{user.username}</Heading></Box>
+                <Image h={['5em', '15em', '25em', '25em', '25em', '30em']} src={image} ></Image>
+                <Heading fontWeight='normal' textAlign='start' m='5px'>{title}</Heading>
+                <Divider />
+                {/* <Heading fontWeight='normal' fontSize='3xl' mt='7px' mb='15px'>Sub heading</Heading> */}
+                <Text m='2px'>{content1}</Text>
+                <Text m='2px'>{content2}</Text>
+
+                <Divider />
+                <Box display='flex' justifyContent='center' alignItems='center' mt='1rem'><Button w='100px'>Read More</Button></Box>
+            </Box>
         </>
 
     )
