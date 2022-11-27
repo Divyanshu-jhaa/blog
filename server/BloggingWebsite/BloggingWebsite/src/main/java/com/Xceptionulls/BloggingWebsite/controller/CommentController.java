@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/comment")
+@CrossOrigin
 public class CommentController {
     @Autowired
     private CommentService commentService;
