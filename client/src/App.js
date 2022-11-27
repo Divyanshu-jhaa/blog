@@ -3,7 +3,7 @@ import { Routes, Route, redirect, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Feed from "./pages/Feed";
-
+import './index.css';
 const App = () => {
 
   return (

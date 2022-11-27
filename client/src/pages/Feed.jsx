@@ -18,31 +18,64 @@ import { useEffect } from "react";
 const Feed = () => {
   const [category, setCategory] = useState('');
   const [feed, setfeed] = useState([]);
+  const [users, setusers] = useState([]);
+  const fetchUsers = async () => {
+    try {
+      const temp2 = await axios.get("http://localhost:8080/user/getAll")
+      setusers(temp2.data);
+
+    } catch (err) {
+      console.log(err);
+
+    }
+  }
+
   const feedData = async () => {
     try {
-      const temp = await axios.get("http://localhost:8080/blog/getAll");
-      setfeed(temp.data);
-      console.log(temp.data);
+      const temp1 = await axios.get("http://localhost:8080/blog/getAll");
+      setfeed(temp1.data);
+      console.log(temp1.data);
     } catch (err) {
       console.log(err);
     }
   }
   useEffect(() => {
+    fetchUsers();
     feedData();
-
   }, [])
+  if (feed.length === 0) {
+    return (
+      <>
+        <Box display="flex" justifyContent="center" mt='8rem'>
+          <Box
+            display="flex"
+            flexDirection="row"
+            justifyContent="center"
+            mt="25vh"
+          >
+            <svg
+              className="animate-spin h-5 w-5 mr-3 bg-[black]"
+              viewBox="0 0 24 24"
+            ></svg>
+            loading
+          </Box>
+        </Box>
+      </>
+    )
 
-  return (
-    <>
-      <Container centerContent>
-        <Box display='flex' justifyContent='start' w={['0em', '30em', '48em', '62em', '65em', '70em']} mt='10px' mb='10px'><Text fontWeight='normal' fontSize='4xl'>Trending</Text></Box>
-        {feed.map((x) => {
-          return <Blog user_id={x.user_id} category_id={x.category_id} title={x.title} content1={x.content1} content2={x.content2} content3={x.content3} content4={x.content4} content5={x.content5} image={x.image} date={x.date} post_id={x.post_id} />
-        })}
+  } else {
+    return (
+      <>
+        <Container centerContent>
+          <Box display='flex' justifyContent='start' w={['0em', '30em', '48em', '62em', '65em', '70em']} mt='10px' mb='10px'><Text fontWeight='normal' fontSize='4xl'>Trending</Text></Box>
+          {feed.map((x) => {
+            return <Blog user_id={x.user_id} category_id={x.category_id} title={x.title} content1={x.content1} content2={x.content2} content3={x.content3} content4={x.content4} content5={x.content5} image={x.image} date={x.date} post_id={x.post_id} users={users} />
+          })}
 
-      </Container>
-    </>
-  );
+        </Container>
+      </>
+    );
+  }
 
 };
 
