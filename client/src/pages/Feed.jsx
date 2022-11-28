@@ -56,7 +56,7 @@ const Feed = () => {
     fetchUsers();
     feedData();
   }, []);
-  if (feed.length === 0 && users.length === 0) {
+  if (feed.length === 0 || users.length === 0) {
     return (
       <>
         <Box display="flex" justifyContent="center" mt="8rem">
