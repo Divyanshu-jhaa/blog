@@ -53,12 +53,22 @@ public class User {
         this.username = username;
     }
 
+
+    public String getProfile_photo() {
+        return profile_photo;
+    }
+
+    public void setProfile_photo(String profile_photo) {
+        this.profile_photo = profile_photo;
+    }
+
     private String email;
 
     private String password;
 
     private String username;
 
+    private String profile_photo;
 
 
 }

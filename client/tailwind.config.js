@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     fontFamily: {
       Michroma: ["Michroma", "sans-serif;"],
+      Inconsolata: ["Inconsolata","monospace"]
     },
   },
   plugins: [],

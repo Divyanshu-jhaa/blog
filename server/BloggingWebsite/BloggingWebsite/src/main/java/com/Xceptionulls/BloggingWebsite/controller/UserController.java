@@ -21,6 +21,11 @@ public class UserController {
         return userService.listAll();
     }
 
+    @GetMapping("/{id}")
+    public User getOne(@PathVariable Integer id)
+    {
+        return userService.get(id);
+    }
     @PostMapping("/add")
     public String add(@RequestBody User user) {
         userService.save(user);
