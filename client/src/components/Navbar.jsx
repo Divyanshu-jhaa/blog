@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "./UI/Logo";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   let path = window.location.pathname;
   const navigate = useNavigate();
   return (
@@ -41,7 +41,13 @@ const Navbar = () => {
         >
           Account
         </div>
-        <div className="border rounded-sm cursor-pointer border-black ml-6 mr-3 p-1 pl-3 pr-3">
+        <div
+          className="border rounded-sm cursor-pointer border-black ml-6 mr-3 p-1 pl-3 pr-3"
+          onClick={() => {
+            localStorage.removeItem("loginState");
+            props.stateHandler();
+          }}
+        >
           Logout
         </div>
       </div>

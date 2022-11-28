@@ -10,7 +10,6 @@ const App = () => {
   let path = window.location.pathname;
   return (
     <>
-    {path === "/login" || path === "/"?null:<Navbar/>}
       <Routes>
         <Route path="/" exact element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />

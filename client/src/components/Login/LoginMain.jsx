@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import imageLogin from "../assets/8401.jpg";
 import Logo from "../UI/Logo";
 import Signin from "./Signin";
 import Signup from "./Signup";
 
 const LoginMain = () => {
+  const navigate = useNavigate();
+  const [storageData, setStorageData] = useState({});
   const [registerView, setRegisterView] = useState(false);
   const registerViewHandler = () => {
     setRegisterView((prevState) => {
       return !prevState;
     });
   };
+  useEffect(() => {
+    let data = localStorage.getItem("loginState");
+    if (data !== null) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, []);
   return (
     <>
       <div className="flex justify-center items-center h-screen bg-[#ededed]">

@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signin = (props) => {
+  const navigate = useNavigate();
+  const [data, setData] = useState({ username: "", password: "" });
+  let stHelper = false;
+  const loginHandler = async () => {
+    if (data.username.length && data.password.length) {
+      const res = await axios.get("http://localhost:8080/user/getAll");
+      if (res.status === 200) {
+        res.data.forEach((item) => {
+          if (
+            item.username === data.username &&
+            item.password === data.password
+          ) {
+            stHelper = true;
+            localStorage.setItem(
+              "loginState",
+              JSON.stringify({
+                username: item.username,
+                user_id: item.user_id,
+              })
+            );
+            navigate("/dashboard", { replace: true });
+          }
+        });
+        if (stHelper === false) {
+          console.log("wrong details");
+        }
+      } else {
+        console.log("server error");
+      }
+    }
+  };
   return (
     <div className="flex-auto w-[100%] m-1 flex flex-col justify-center text-center">
       <div className="font-[500] mt-1 mb-1">
@@ -8,6 +41,11 @@ const Signin = (props) => {
           type="text"
           className="p-2 w-[75%] rounded-md bg-[#E1ECFD]"
           placeholder="username"
+          onChange={(e) => {
+            setData((prevState) => {
+              return { ...prevState, username: e.target.value };
+            });
+          }}
         />
       </div>
       <div className="font-[500] mt-1 mb-1">
@@ -15,10 +53,18 @@ const Signin = (props) => {
           type="password"
           className="p-2 w-[75%] rounded-md bg-[#E1ECFD]"
           placeholder="password"
+          onChange={(e) => {
+            setData((prevState) => {
+              return { ...prevState, password: e.target.value };
+            });
+          }}
         />
       </div>
       <div className="font-[500] mt-2 mb-1">
-        <button className="p-2 border border-black w-[75%] text-[white] rounded-md bg-[#08345B]">
+        <button
+          className="p-2 border border-black w-[75%] text-[white] rounded-md bg-[#08345B]"
+          onClick={loginHandler}
+        >
           Log in
         </button>
       </div>

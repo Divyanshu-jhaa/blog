@@ -2,28 +2,50 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import validator from "validator";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
-    user_id: uuidv4(),
+    user_id:
+      new Date().getSeconds().toString() +
+      new Date().getMilliseconds().toString() +
+      new Date().getMinutes().toString(),
     username: "",
     name: "",
     password: "",
     email: "",
   });
+  console.log(data.user_id);
   const registerHandler = async () => {
     console.log(data);
     if (
-      data.user_id.length &&
       data.username.length &&
       data.name.length &&
       data.password.length &&
       data.email.length
     ) {
-      if (validator.isEmail(data.email) && validator.isAlpha(data.name)) {
+      if (validator.isEmail(data.email)) {
         console.log("Correct entry");
-        const res = await axios.post("http://localhost:8080/add", data);
-        console.log(res);
+        const res = await axios.post("http://localhost:8080/user/add", {
+          ...data,
+          //   user_id:
+          //     new Date().getSeconds().toString() +
+          //     new Date().getMilliseconds().toString() +
+          //     new Date().getMinutes().toString(),
+        });
+        if (res.status === 200) {
+          localStorage.setItem(
+            "loginState",
+            JSON.stringify({
+              username: data.username,
+              user_id: data.user_id,
+            })
+          );
+          navigate("/dashboard", { replace: true });
+        } else {
+          console.log("server error");
+        }
       } else {
         console.log("Enter data not correct");
       }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 import {
   Box,
   Button,
@@ -15,20 +16,32 @@ import {
 } from "@chakra-ui/react";
 import Blog from "../components/Blog";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const Feed = () => {
-  const [category, setCategory] = useState('');
+  const navigate = useNavigate();
+  const [category, setCategory] = useState("");
   const [feed, setfeed] = useState([]);
   const [users, setusers] = useState([]);
+  const [helperState, setHelperState] = useState(true);
+  const helperStateHandler = () => {
+    setHelperState((prevState) => {
+      return !prevState;
+    });
+  };
+  useEffect(() => {
+    let localData = localStorage.getItem("loginState");
+    if (localData === null) {
+      navigate("/login", { replace: true });
+    }
+  }, [helperState]);
   const fetchUsers = async () => {
     try {
-      const temp2 = await axios.get("http://localhost:8080/user/getAll")
+      const temp2 = await axios.get("http://localhost:8080/user/getAll");
       setusers(temp2.data);
-
     } catch (err) {
       console.log(err);
-
     }
-  }
+  };
 
   const feedData = async () => {
     try {
@@ -38,15 +51,15 @@ const Feed = () => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
   useEffect(() => {
     fetchUsers();
     feedData();
-  }, [])
+  }, []);
   if (feed.length === 0) {
     return (
       <>
-        <Box display="flex" justifyContent="center" mt='8rem'>
+        <Box display="flex" justifyContent="center" mt="8rem">
           <Box
             display="flex"
             flexDirection="row"
@@ -61,22 +74,45 @@ const Feed = () => {
           </Box>
         </Box>
       </>
-    )
-
+    );
   } else {
     return (
       <>
+        <Navbar stateHandler={helperStateHandler} />
         <Container centerContent>
-          <Box display='flex' justifyContent='start' w={['0em', '30em', '48em', '62em', '65em', '70em']} mt='10px' mb='10px'><Text fontWeight='normal' fontSize='4xl'>Trending</Text></Box>
+          <Box
+            display="flex"
+            justifyContent="start"
+            w={["0em", "30em", "48em", "62em", "65em", "70em"]}
+            mt="10px"
+            mb="10px"
+          >
+            <Text fontWeight="normal" fontSize="4xl">
+              Trending
+            </Text>
+          </Box>
           {feed.map((x) => {
-            return <Blog user_id={x.user_id} category_id={x.category_id} title={x.title} content1={x.content1} content2={x.content2} content3={x.content3} content4={x.content4} content5={x.content5} image={x.image} date={x.date} post_id={x.post_id} users={users} />
+            return (
+              <Blog
+                user_id={x.user_id}
+                category_id={x.category_id}
+                title={x.title}
+                content1={x.content1}
+                content2={x.content2}
+                content3={x.content3}
+                content4={x.content4}
+                content5={x.content5}
+                image={x.image}
+                date={x.date}
+                post_id={x.post_id}
+                users={users}
+              />
+            );
           })}
-
         </Container>
       </>
     );
   }
-
 };
 
 export default Feed;
