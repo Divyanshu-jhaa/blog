@@ -1,9 +1,10 @@
 import React from "react";
+import DashboardMain from "../components/Dashboard/DashboardMain";
 
 const Dashboard = () => {
   return (
     <>
-      <div>Dashboard</div>
+      <DashboardMain />
     </>
   );
 };

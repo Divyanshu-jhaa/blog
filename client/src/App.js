@@ -7,10 +7,10 @@ import Dashboard from "./pages/Dashboard";
 import Feed from "./pages/Feed";
 import './index.css';
 const App = () => {
-
+  let path = window.location.pathname;
   return (
     <>
-    <Navbar/>
+    {path === "/login" || path === "/"?null:<Navbar/>}
       <Routes>
         <Route path="/" exact element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
