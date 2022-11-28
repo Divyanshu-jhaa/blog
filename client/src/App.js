@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Feed from "./pages/Feed";
+import SingleView from "./pages/SingleView";
 import './index.css';
 const App = () => {
   let path = window.location.pathname;
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/feed" element={<Feed />} />
+        <Route path="/singleview" element={<SingleView/>}></Route>
       </Routes>
       </>
   );

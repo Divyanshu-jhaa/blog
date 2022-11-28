@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -47,7 +48,6 @@ const Feed = () => {
     try {
       const temp1 = await axios.get("http://localhost:8080/blog/getAll");
       setfeed(temp1.data);
-      console.log(temp1.data);
     } catch (err) {
       console.log(err);
     }

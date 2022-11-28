@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {
     Box,
     Button,
@@ -33,7 +34,9 @@ const Blog = (prop) => {
                 <Text m='2px'>{content2}</Text>
 
                 <Divider />
-                <Box display='flex' justifyContent='center' alignItems='center' mt='1rem'><Button w='100px'>Read More</Button></Box>
+                <Box display='flex' justifyContent='center' alignItems='center' mt='1rem'><Link to="/singleview" state={{
+                    ...prop, user: { user }
+                }}><Button w='100px'>Read More</Button></Link></Box>
             </Box>
         </>
 
