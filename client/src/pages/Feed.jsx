@@ -59,6 +59,7 @@ const Feed = () => {
   if (feed.length === 0 || users.length === 0) {
     return (
       <>
+        <Navbar stateHandler={helperStateHandler} />
         <Box display="flex" justifyContent="center" mt="8rem">
           <Box
             display="flex"

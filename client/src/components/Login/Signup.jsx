@@ -15,6 +15,8 @@ const Signup = (props) => {
     name: "",
     password: "",
     email: "",
+    profile_photo:
+      "https://aniyuki.com/wp-content/uploads/2022/06/aniyuki-anime-profile-picture-63.jpg",
   });
   console.log(data.user_id);
   const registerHandler = async () => {

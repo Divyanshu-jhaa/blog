@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [localData, setLocalData] = useState({ username: "", user_id: "" });
+  const [loginData, setLoginData] = useState({ username: "", user_id: "" });
   const [helperState, setHelperState] = useState(true);
   const helperStateHandler = () => {
     setHelperState((prevState) => {
@@ -17,13 +17,13 @@ const Dashboard = () => {
     if (localData === null) {
       navigate("/login", { replace: true });
     } else {
-      setLocalData(JSON.parse(localData));
+      setLoginData(JSON.parse(localData));
     }
   }, [helperState]);
   return (
     <>
       <Navbar stateHandler={helperStateHandler} />
-      <DashboardMain />
+      <DashboardMain localData={loginData} />
     </>
   );
 };
