@@ -20,10 +20,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Feed = () => {
   const navigate = useNavigate();
-  const [category, setCategory] = useState("");
   const [feed, setfeed] = useState([]);
   const [users, setusers] = useState([]);
   const [helperState, setHelperState] = useState(true);
+
   const helperStateHandler = () => {
     setHelperState((prevState) => {
       return !prevState;
@@ -35,6 +35,7 @@ const Feed = () => {
       navigate("/login", { replace: true });
     }
   }, [helperState]);
+
   const fetchUsers = async () => {
     try {
       const temp2 = await axios.get("http://localhost:8080/user/getAll");
@@ -53,7 +54,9 @@ const Feed = () => {
       console.log(err);
     }
   };
+
   useEffect(() => {
+
     fetchUsers();
     feedData();
   }, []);
@@ -104,6 +107,7 @@ const Feed = () => {
                 date={x.date}
                 post_id={x.post_id}
                 users={users}
+
               />
             );
           })}

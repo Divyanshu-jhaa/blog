@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { CiUser } from 'react-icons/ci';
 import {
     Box,
     Button,
@@ -39,8 +40,13 @@ const Blog = (prop) => {
                     display="flex"
                 >
                     {" "}
-                    <Circle size="40px" bg="white" color="white" mr="8px"></Circle>
-                    <Heading>{user.username}</Heading>
+                    <Circle size="40px" mr="8px"><Image src={user.profile_photo == null ? './defphoto.png' : user.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
+                    <Box display='flex' flexDirection='column'>
+                        <Heading fontWeight='medium' fontSize='lg'>{user.name}</Heading>
+                        <Heading fontWeight='medium' fontSize='lg'>@{user.username}</Heading>
+
+                    </Box>
+
                 </Box>
                 <Image
                     h={["5em", "15em", "25em", "25em", "25em", "30em"]}
