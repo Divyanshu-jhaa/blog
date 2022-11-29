@@ -98,11 +98,7 @@ const Feed = () => {
                 user_id={x.user_id}
                 category_id={x.category_id}
                 title={x.title}
-                content1={x.content1}
-                content2={x.content2}
-                content3={x.content3}
-                content4={x.content4}
-                content5={x.content5}
+                content={x.content}
                 image={x.image}
                 date={x.date}
                 post_id={x.post_id}

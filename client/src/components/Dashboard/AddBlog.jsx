@@ -25,7 +25,7 @@ const AddBlog = (props) => {
     }
   };
   return (
-    <div className="h-fit m-2 bg-[white] rounded">
+    <div className="h-fit m-2 bg-[white] rounded pb-1">
       <div className=" flex flex-row p-2 items-center">
         <div className="border border-black rounded-full overflow-hidden w-[40px] h-[40px] flex">
           <img src={props.userDetails.profile_photo} className="object-fill" />
@@ -169,10 +169,10 @@ const AddBlog = (props) => {
         <div className="border border-black flex-auto w-[70%]"></div>
         <div className="flex-auto w-[30%] ml-2 flex justify-center items-center">
           <button
-            className="border border-black w-[100%] rounded p-1 bg-[]"
+            className="border border-black w-[100%] rounded-2xl p-1 bg-[black] text-[white]"
             onClick={postSubmitHandler}
           >
-            Post
+            Publish
           </button>
         </div>
       </div>
