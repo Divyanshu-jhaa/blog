@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { BiCommentDots } from "react-icons/bi";
@@ -32,6 +32,7 @@ const SingleView = () => {
     const [commentData, setcommentData] = useState([]);
     const currentUser = JSON.parse(window.localStorage.getItem("loginState"));
     const categories = ['Technology', 'Food', 'Health & Fitness', 'Lifestyle', 'Photography', 'Business', 'Sport'];
+    const navigate = useNavigate();
     const helperStateHandler = () => {
         setHelperState((prevState) => {
             return !prevState;
@@ -58,6 +59,12 @@ const SingleView = () => {
             }
         }
     }
+    useEffect(() => {
+        let localData = localStorage.getItem("loginState");
+        if (localData === null) {
+            navigate("/login", { replace: true });
+        }
+    }, [helperState]);
     useEffect(() => {
         fetchcomments();
     }, [comment]);
@@ -134,7 +141,6 @@ const SingleView = () => {
                                             <Heading fontWeight='medium' fontSize='lg'>{gg.username}</Heading>
                                             <Text>{x.comment}</Text>
                                         </Box>
-
                                     </Box>);
                                 })}
                                 <Divider borderColor='gray' />
