@@ -11,11 +11,11 @@ public class Blog {
     private int user_id;
     private int category_id;
 
-    public String getContent1() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent1(String content1) {
+    public void setContent(String content) {
         this.content = content;
     }
 

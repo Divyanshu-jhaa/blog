@@ -47,7 +47,6 @@ const SingleView = () => {
                     <Text m='10px'>{content5}</Text>
                     <Box w={['0em', '30em', '48em', '62em', '65em', '70em']} display='flex' justifyContent='space-between'>
                         <AiOutlineComment />
-
                     </Box>
                 </Box>
 
