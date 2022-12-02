@@ -19,8 +19,11 @@ public class BlogService {
     public Blog get(Integer id){
         return blogRepository.findById(id).get();
     }
+
     public void delete(Integer id){
         blogRepository.deleteById(id);
     }
+
+    public List<Blog> listSpecified(Integer user_id){return blogRepository.listSpecifiedBlog(user_id);}
 
 }

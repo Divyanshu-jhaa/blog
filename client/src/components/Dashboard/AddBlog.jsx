@@ -17,6 +17,7 @@ const AddBlog = (props) => {
       });
       if (res.status === 200) {
         console.log("successful");
+        props.addBlogHandler();
       } else {
         console.log("server error");
       }
