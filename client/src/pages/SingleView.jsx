@@ -118,9 +118,14 @@ const SingleView = () => {
                         <Text m='10px'>{content}</Text>
                         <Divider borderColor='black' border='3px' />
                         <Box display='flex' justifyContent='flex-start' w={['0em', '28em', '46em', '60em', '63em', '68em']} flexDirection='column'>
-                            <Heading fontWeight='medium'>Comments</Heading>
+                            <Box display='flex' flexDirection='row'>
+                                <Heading fontWeight='medium' >Comments</Heading>
+                                <Heading fontWeight='medium' fontSize='3xl' mt='5px' ml='3px'>{`(${postcomment.length})`}</Heading>
+
+                            </Box>
+
                             <Box display='flex' flexDirection='row' w={['0em', '28em', '46em', '60em', '63em', '68em']} mt='10px'>
-                                <Circle size="40px" mr="8px"><Image src={commentUser.profile_photo == null ? './defphoto.png' : commentUser.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
+                                <Circle size="40px" mr="8px"><Image src={commentUser.profile_photo === null ? './defphoto.png' : commentUser.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
                                 <Box display='flex' flexDirection='column'>
                                     <Input w={['0em', '25em', '43em', '57em', '60em', '65em']} value={comment} bg='white' placeholder='Leave a comment...'
                                         onChange={(e) => { setcomment(e.target.value) }}></Input>
