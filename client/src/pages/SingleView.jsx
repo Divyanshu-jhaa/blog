@@ -72,6 +72,7 @@ const SingleView = () => {
     const location = useLocation();
     const { user_id, category_id, post_id, title, content, image, date, users } = location.state;
     let user = users.find((x) => x.user_id === user_id);
+    const commentUser = users.find((c) => c.user_id == currentUser.user_id);
     if (commentData.length == 0) {
         return <>
             <Navbar stateHandler={helperStateHandler} />
@@ -119,7 +120,7 @@ const SingleView = () => {
                         <Box display='flex' justifyContent='flex-start' w={['0em', '28em', '46em', '60em', '63em', '68em']} flexDirection='column'>
                             <Heading fontWeight='medium'>Comments</Heading>
                             <Box display='flex' flexDirection='row' w={['0em', '28em', '46em', '60em', '63em', '68em']} mt='10px'>
-                                <Circle size="40px" mr="8px"><Image src={user.profile_photo == null ? './defphoto.png' : user.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
+                                <Circle size="40px" mr="8px"><Image src={commentUser.profile_photo == null ? './defphoto.png' : commentUser.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
                                 <Box display='flex' flexDirection='column'>
                                     <Input w={['0em', '25em', '43em', '57em', '60em', '65em']} value={comment} bg='white' placeholder='Leave a comment...'
                                         onChange={(e) => { setcomment(e.target.value) }}></Input>
