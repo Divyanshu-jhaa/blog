@@ -75,7 +75,7 @@ const SingleView = () => {
     }, [comment]);
 
     const location = useLocation();
-    const { user_id, category_id, post_id, title, content, image, date, users } = location.state;
+    const { user_id, category_id, post_id, title, content, image_data, date, users } = location.state;
     let user = users.find((x) => x.user_id === user_id);
     const commentUser = users.find((c) => c.user_id == currentUser.user_id);
     if (commentData.length == 0) {
@@ -118,7 +118,7 @@ const SingleView = () => {
                     </Box>
                     <Box display='flex' w={['0em', '30em', '48em', '62em', '65em', '70em']} p='1rem' flexDirection='column' bg='#ebebeb' alignItems='center' borderRadius='10px'>
                         <Heading m='10px'>{title}</Heading>
-                        <Image src={image} h={['5em', '15em', '25em', '25em', '25em', '30em']} w={['0em', '30em', '48em', '62em', '65em', '70em']} m='10px'></Image>
+                        <Image src={image_data} h={['10em', '20em', '30em', '30em', '30em', '35em']} w={['0em', '30em', '48em', '62em', '65em', '70em']} m='10px'></Image>
 
                         <Text m='10px'>{content}</Text>
                         <Divider borderColor='black' border='3px' />

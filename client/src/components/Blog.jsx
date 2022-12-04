@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { CiUser } from 'react-icons/ci';
 import {
@@ -19,7 +19,7 @@ import {
 import { useState } from "react";
 import axios from "axios";
 const Blog = (prop) => {
-    const { user_id, category_id, post_id, title, content, image_id,image_data, date, users } =
+    const { user_id, category_id, post_id, title, content, image_id, image_data, date, users } =
         prop;
     let user = users.find((x) => x.user_id === user_id);
 
@@ -44,7 +44,7 @@ const Blog = (prop) => {
             <Box
                 display="flex"
                 w={["0em", "30em", "48em", "62em", "65em", "70em"]}
-                bg="gray.400"
+                bg="white"
                 flexDirection="column"
                 p="1rem"
                 borderRadius="3px"
@@ -82,7 +82,7 @@ const Blog = (prop) => {
                     alignItems="center"
                     mt="1rem"
                 >
-                    <Link to="/singleview" state={{ ...prop }}><Button w="100px">Read More</Button></Link>
+                    <Link to="/singleview" state={{ ...prop }}><Button w="100px" bg="gray.300">Read More</Button></Link>
                 </Box>
             </Box>
         </>

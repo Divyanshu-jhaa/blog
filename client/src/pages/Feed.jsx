@@ -88,6 +88,7 @@ const Feed = () => {
             display="flex"
             justifyContent="start"
             w={["0em", "30em", "48em", "62em", "65em", "70em"]}
+            bg='#ebebeb'
             mt="10px"
             mb="10px"
           >
