@@ -1,23 +1,24 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import topImage from "../assets/top.png";
 
 const AddBlog = (props) => {
   const [data, setData] = useState({
     category_id: "",
     content: "",
     title: "",
-    image_id:"",
-    image_data:"",
+    image_id: "",
+    image_data: "",
     user_id: props.userDetails.user_id,
-    date:""
+    date: "",
   });
 
   const [previewImage, setPreviewImage] = useState({
     link: "",
     isAdded: false,
   });
-  
+
   // const [imageData, setImageData] = useState("");
 
   const postSubmitHandler = async () => {
@@ -39,7 +40,7 @@ const AddBlog = (props) => {
       // }
       if (res.status === 200) {
         console.log("successful");
-        props.addBlogHandler();
+        props.changeViewSubmitHandler();
       } else {
         console.log("server error");
       }
@@ -48,7 +49,15 @@ const AddBlog = (props) => {
     }
   };
   return (
-    <div className="h-fit m-2 bg-[white] rounded pb-1">
+    <div className="h-fit m-2 bg-[white] rounded pb-1 relative">
+      <div
+        className="absolute top-0 right-0 m-2"
+        onClick={() => {
+          props.changeViewHandler();
+        }}
+      >
+        <img src={topImage} className="w-[40px]" />
+      </div>
       <div className=" flex flex-row p-2 items-center">
         <div className="border border-black rounded-full overflow-hidden w-[40px] h-[40px] flex">
           <img src={props.userDetails.profile_photo} className="object-fill" />
@@ -205,11 +214,11 @@ const AddBlog = (props) => {
               // setImageData(imageData);
               let imageReader = new FileReader();
               imageReader.onload = () => {
-                setData((prevState)=>{
-                  return{...prevState,image_data:imageReader.result}
-                })//base64encoded string
+                setData((prevState) => {
+                  return { ...prevState, image_data: imageReader.result };
+                }); //base64encoded string
               };
-              imageReader.readAsDataURL(e.target.files[0])
+              imageReader.readAsDataURL(e.target.files[0]);
               setPreviewImage((prevState) => {
                 return {
                   ...prevState,

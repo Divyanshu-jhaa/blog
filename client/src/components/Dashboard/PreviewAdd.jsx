@@ -5,7 +5,7 @@ const PreviewAdd = (props) => {
     <div
       className="h-fit m-2 bg-[white] rounded"
       onClick={() => {
-        props.addBlogHandler();
+        props.changeViewHandler();
       }}
     >
       <div className=" flex flex-row p-2 items-center">
