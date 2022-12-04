@@ -56,7 +56,6 @@ const Feed = () => {
   };
 
   useEffect(() => {
-
     fetchUsers();
     feedData();
   }, []);
@@ -103,11 +102,10 @@ const Feed = () => {
                 category_id={x.category_id}
                 title={x.title}
                 content={x.content}
-                image={x.image}
+                image_id={x.image_id}
                 date={x.date}
                 post_id={x.post_id}
                 users={users}
-
               />
             );
           })}

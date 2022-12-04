@@ -1,20 +1,36 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const AddBlog = (props) => {
   const [data, setData] = useState({
     category_id: "",
     content: "",
-    image: "",
     title: "",
     user_id: props.userDetails.user_id,
   });
+  const [previewImage, setPreviewImage] = useState({
+    link: "",
+    isAdded: false,
+  });
+  const [imageData, setImageData] = useState("");
   const postSubmitHandler = async () => {
+    let imageId = "";
+    if (imageData !== "") {
+      imageId = uuidv4();
+    }
     if (data.category_id !== "" && data.content.length && data.title.length) {
       let res = await axios.post(`http://localhost:8080/blog/add`, {
         ...data,
         date: new Date().toJSON().slice(0, 10),
+        image_id: imageId,
       });
+      if (imageId !== "") {
+        let res2 = await axios.post(
+          `http://localhost:8080/image/${imageId}`,
+          imageData
+        );
+      }
       if (res.status === 200) {
         console.log("successful");
         props.addBlogHandler();
@@ -48,6 +64,12 @@ const AddBlog = (props) => {
           }}
         />
       </div>
+      {previewImage.isAdded ? (
+        <div className="">
+          <img src={previewImage.link} />
+        </div>
+      ) : null}
+
       <div className="">
         <textarea
           type="text"
@@ -167,7 +189,24 @@ const AddBlog = (props) => {
         </div>
       </div>
       <div className=" flex flex-row p-1">
-        <div className="border border-black flex-auto w-[70%]"></div>
+        <div className=" overflow-hidden flex-auto rounded flex justify-center items-center w-[70%]">
+          <input
+            type="file"
+            className="flex-auto file:bg-[#08345B] file:text-[#ffffff] file:font-[400] file:border-none file:p-1 file:px-4 rounded border border-[#08345B]"
+            onChange={(e) => {
+              const imageData = new FormData();
+              imageData.append("image", e.target.files[0]);
+              setImageData(imageData);
+              setPreviewImage((prevState) => {
+                return {
+                  ...prevState,
+                  link: URL.createObjectURL(e.target.files[0]),
+                  isAdded: true,
+                };
+              });
+            }}
+          />
+        </div>
         <div className="flex-auto w-[30%] ml-2 flex justify-center items-center">
           <button
             className="border border-black w-[100%] rounded-2xl p-1 bg-[black] text-[white]"
