@@ -103,6 +103,7 @@ const Feed = () => {
                 title={x.title}
                 content={x.content}
                 image_id={x.image_id}
+                image_data={x.image_data}
                 date={x.date}
                 post_id={x.post_id}
                 users={users}

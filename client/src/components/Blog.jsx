@@ -19,25 +19,25 @@ import {
 import { useState } from "react";
 import axios from "axios";
 const Blog = (prop) => {
-    const { user_id, category_id, post_id, title, content, image_id, date, users } =
+    const { user_id, category_id, post_id, title, content, image_id,image_data, date, users } =
         prop;
     let user = users.find((x) => x.user_id === user_id);
 
-    const [imageURL, setImageURL] = useState("");
-    useEffect(() => {
-      const fetchImage = async () => {
-        if (image_id === "") {
-          setImageURL("");
-        } else {
-          let imgURL = await axios.get(
-            `http://localhost:8080/image/${image_id}`
-          );
-          imgURL = imgURL.data.image_data;
-          setImageURL(`data:image/jpeg;base64,${imgURL}`);
-        }
-      };
-      fetchImage();
-    });
+    // const [imageURL, setImageURL] = useState("");
+    // useEffect(() => {
+    //   const fetchImage = async () => {
+    //     if (image_id === "") {
+    //       setImageURL("");
+    //     } else {
+    //       let imgURL = await axios.get(
+    //         `http://localhost:8080/image/${image_id}`
+    //       );
+    //       imgURL = imgURL.data.image_data;
+    //       setImageURL(`data:image/jpeg;base64,${imgURL}`);
+    //     }
+    //   };
+    //   fetchImage();
+    // });
 
     return (
         <>
@@ -66,7 +66,7 @@ const Blog = (prop) => {
                 </Box>
                 <Image
                     // h={["5em", "15em", "25em", "25em", "25em", "30em"]}
-                    src={imageURL}
+                    src={image_data}
                 ></Image>
                 <Heading fontWeight="normal" textAlign="start" m="5px">
                     {title}

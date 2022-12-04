@@ -11,14 +11,6 @@ public class Blog {
     private int user_id;
     private int category_id;
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     private String title;
 
     @Column(columnDefinition = "TEXT")
@@ -26,18 +18,22 @@ public class Blog {
 
     private String image_id;
 
+    @Lob
+    private String image_data;
+
     private String date;
 
     public Blog() {
     }
 
-    public Blog(int post_id, int user_id, int category_id, String title, String content, String image_id, String date) {
+    public Blog(int post_id, int user_id, int category_id, String title, String content, String image_id, String image_data, String date) {
         this.post_id = post_id;
         this.user_id = user_id;
         this.category_id = category_id;
         this.title = title;
         this.content = content;
         this.image_id = image_id;
+        this.image_data = image_data;
         this.date = date;
     }
 
@@ -73,12 +69,28 @@ public class Blog {
         this.title = title;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getImage_id() {
         return image_id;
     }
 
     public void setImage_id(String image_id) {
         this.image_id = image_id;
+    }
+
+    public String getImage_data() {
+        return image_data;
+    }
+
+    public void setImage_data(String image_data) {
+        this.image_data = image_data;
     }
 
     public String getDate() {

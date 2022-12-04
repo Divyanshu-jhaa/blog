@@ -31,7 +31,8 @@ const DashboardMain = () => {
     };
     fetchData();
   }, [addBlog]);
-  if (isFetched) {
+
+  if (isFetched)
     return (
       <>
         <div className="flex flex-auto h-fit bg-[#ededed] flex-col lg:flex-row">
@@ -57,12 +58,13 @@ const DashboardMain = () => {
         </div>
       </>
     );
-  } else
+  else {
     return (
       <div className="flex flex-auto h-screen justify-center items-center">
         <LoadingAnimation />
       </div>
     );
+  }
 };
 
 export default DashboardMain;

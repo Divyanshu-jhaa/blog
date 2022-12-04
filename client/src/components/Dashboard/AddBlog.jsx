@@ -7,30 +7,36 @@ const AddBlog = (props) => {
     category_id: "",
     content: "",
     title: "",
+    image_id:"",
+    image_data:"",
     user_id: props.userDetails.user_id,
+    date:""
   });
+
   const [previewImage, setPreviewImage] = useState({
     link: "",
     isAdded: false,
   });
-  const [imageData, setImageData] = useState("");
+  
+  // const [imageData, setImageData] = useState("");
+
   const postSubmitHandler = async () => {
-    let imageId = "";
-    if (imageData !== "") {
-      imageId = uuidv4();
-    }
+    // let imageId = "";
+    // if (data.image_data !== "") {
+    //   imageId = uuidv4();
+    // }
     if (data.category_id !== "" && data.content.length && data.title.length) {
       let res = await axios.post(`http://localhost:8080/blog/add`, {
         ...data,
         date: new Date().toJSON().slice(0, 10),
-        image_id: imageId,
+        image_id: uuidv4(),
       });
-      if (imageId !== "") {
-        let res2 = await axios.post(
-          `http://localhost:8080/image/${imageId}`,
-          imageData
-        );
-      }
+      // if (imageId !== "") {
+      //   let res2 = await axios.post(
+      //     `http://localhost:8080/image/${imageId}`,
+      //     imageData
+      //   );
+      // }
       if (res.status === 200) {
         console.log("successful");
         props.addBlogHandler();
@@ -194,9 +200,16 @@ const AddBlog = (props) => {
             type="file"
             className="flex-auto file:bg-[#08345B] file:text-[#ffffff] file:font-[400] file:border-none file:p-1 file:px-4 rounded border border-[#08345B]"
             onChange={(e) => {
-              const imageData = new FormData();
-              imageData.append("image", e.target.files[0]);
-              setImageData(imageData);
+              // const imageData = new FormData();
+              // imageData.append("image", e.target.files[0]);
+              // setImageData(imageData);
+              let imageReader = new FileReader();
+              imageReader.onload = () => {
+                setData((prevState)=>{
+                  return{...prevState,image_data:imageReader.result}
+                })//base64encoded string
+              };
+              imageReader.readAsDataURL(e.target.files[0])
               setPreviewImage((prevState) => {
                 return {
                   ...prevState,
