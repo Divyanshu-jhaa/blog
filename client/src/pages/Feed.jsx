@@ -14,6 +14,7 @@ import {
   Flex,
   SimpleGrid,
   Heading,
+  Select
 } from "@chakra-ui/react";
 import Blog from "../components/Blog";
 import { useEffect } from "react";
@@ -21,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 const Feed = () => {
   const navigate = useNavigate();
   const [feed, setfeed] = useState([]);
+  const [fData, setfData] = useState([]);
   const [users, setusers] = useState([]);
   const [helperState, setHelperState] = useState(true);
 
@@ -29,6 +31,21 @@ const Feed = () => {
       return !prevState;
     });
   };
+  const selectHandler = (e) => {
+    const categoryId = e.target.value;
+    if (categoryId === '') {
+      setfeed(fData);
+    }
+    else {
+      const sortedData = fData.filter((x) => x.category_id === Number(categoryId));
+      if (sortedData.length == 0) {
+        setfeed([0]);
+      } else {
+        setfeed(sortedData);
+      }
+    }
+
+  }
   useEffect(() => {
     let localData = localStorage.getItem("loginState");
     if (localData === null) {
@@ -44,10 +61,10 @@ const Feed = () => {
       console.log(err);
     }
   };
-
   const feedData = async () => {
     try {
       const temp1 = await axios.get("http://localhost:8080/blog/getAll");
+      setfData(temp1.data);
       setfeed(temp1.data);
       console.log(temp1.data);
     } catch (err) {
@@ -91,26 +108,41 @@ const Feed = () => {
             bg='#ebebeb'
             mt="10px"
             mb="10px"
+            flexDirection='column'
           >
             <Text fontWeight="normal" fontSize="4xl">
               Trending
             </Text>
+            <Select placeholder='Sort By Category' bg='white' mt='1rem' onClick={selectHandler}>
+              <option value='1'>Technology</option>
+              <option value='2'>Food</option>
+              <option value='3'>Health & Fitness</option>
+              <option value='4'>Lifestyle</option>
+              <option value='5'>Photography</option>
+              <option value='6'>Business</option>
+              <option value='7'>Sport</option>
+            </Select>
           </Box>
-          {feed.map((x) => {
-            return (
-              <Blog
-                user_id={x.user_id}
-                category_id={x.category_id}
-                title={x.title}
-                content={x.content}
-                image_id={x.image_id}
-                image_data={x.image_data}
-                date={x.date}
-                post_id={x.post_id}
-                users={users}
-              />
-            );
-          })}
+          {feed[0] == 0 ? <Heading fontWeight='normal' mt='10rem'>No Results :( </Heading> :
+
+            feed.map((x) => {
+              return (
+                <Blog
+                  user_id={x.user_id}
+                  category_id={x.category_id}
+                  title={x.title}
+                  content={x.content}
+                  image_id={x.image_id}
+                  image_data={x.image_data}
+                  date={x.date}
+                  post_id={x.post_id}
+                  users={users}
+                />
+              );
+            })
+          }
+
+
         </Container>
       </>
     );
