@@ -42,7 +42,12 @@ const SingleView = () => {
 
         try {
             const temp = await axios.get("http://localhost:8080/comment/getAll");
-            setcommentData(temp.data);
+            if (temp.data.length == 0) {
+                setcommentData([0]);
+            } else {
+                setcommentData(temp.data);
+            }
+
         } catch (err) {
             console.log(err);
         }
