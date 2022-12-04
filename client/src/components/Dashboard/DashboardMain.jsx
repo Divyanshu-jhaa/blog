@@ -8,11 +8,19 @@ import PreviewAdd from "./PreviewAdd";
 const DashboardMain = () => {
   const [userDetails, setUserDetails] = useState({});
   const [userPosts, setUserPosts] = useState([]);
-  const [addBlog, setAddBlog] = useState(false);
+  const [helperState, setHelperState] = useState({
+    addBlog: false,
+    refresh: true,
+  });
   const [isFetched, setIsFetched] = useState(false);
-  const addBlogHandler = () => {
-    setAddBlog((prevState) => {
-      return !prevState;
+  const changeViewHandler = () => {
+    setHelperState((prevState) => {
+      return { ...prevState, addBlog: !prevState.addBlog };
+    });
+  };
+  const changeViewSubmitHandler = () => {
+    setHelperState((prevState) => {
+      return { ...prevState, refresh: !prevState.refresh, addBlog: false };
     });
   };
   useEffect(() => {
@@ -30,7 +38,7 @@ const DashboardMain = () => {
       window.scrollTo(0, 0);
     };
     fetchData();
-  }, [addBlog]);
+  }, [helperState.refresh]);
 
   if (isFetched)
     return (
@@ -38,15 +46,17 @@ const DashboardMain = () => {
         <div className="flex flex-auto h-fit bg-[#ededed] flex-col lg:flex-row">
           <div className="flex-auto lg:w-[25%]"></div>
           <div className="flex-auto lg:w-[50%] flex flex-col">
-            {addBlog ? (
+            {helperState.addBlog ? (
               <AddBlog
                 userDetails={userDetails}
-                addBlogHandler={addBlogHandler}
+                changeViewHandler={changeViewHandler}
+                changeViewSubmitHandler={changeViewSubmitHandler}
               />
             ) : (
               <PreviewAdd
                 userDetails={userDetails}
-                addBlogHandler={addBlogHandler}
+                changeViewHandler={changeViewHandler}
+                changeViewSubmitHandler={changeViewSubmitHandler}
               />
             )}
             <div className="px-2">Your Blog History</div>

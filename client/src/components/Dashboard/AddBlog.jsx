@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import topImage from "../assets/top.png";
 
 const AddBlog = (props) => {
   const [data, setData] = useState({
@@ -10,7 +11,7 @@ const AddBlog = (props) => {
     image_id: "",
     image_data: "",
     user_id: props.userDetails.user_id,
-    date: ""
+    date: "",
   });
 
   const [previewImage, setPreviewImage] = useState({
@@ -39,7 +40,7 @@ const AddBlog = (props) => {
       // }
       if (res.status === 200) {
         console.log("successful");
-        props.addBlogHandler();
+        props.changeViewSubmitHandler();
       } else {
         console.log("server error");
       }
@@ -48,7 +49,15 @@ const AddBlog = (props) => {
     }
   };
   return (
-    <div className="h-fit m-2 bg-[white] rounded pb-1">
+    <div className="h-fit m-2 bg-[white] rounded pb-1 relative">
+      <div
+        className="absolute top-0 right-0 m-2"
+        onClick={() => {
+          props.changeViewHandler();
+        }}
+      >
+        <img src={topImage} className="w-[40px]" />
+      </div>
       <div className=" flex flex-row p-2 items-center">
         <div className="border border-black rounded-full overflow-hidden w-[40px] h-[40px] flex">
           <img src={props.userDetails.profile_photo} className="object-fill" />
@@ -96,8 +105,8 @@ const AddBlog = (props) => {
         <div className=" flex flex-row flex-wrap justify-center">
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 1
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -109,8 +118,8 @@ const AddBlog = (props) => {
           </div>
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 2
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -122,8 +131,8 @@ const AddBlog = (props) => {
           </div>
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 3
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -135,8 +144,8 @@ const AddBlog = (props) => {
           </div>
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 4
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -148,8 +157,8 @@ const AddBlog = (props) => {
           </div>
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 5
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -161,8 +170,8 @@ const AddBlog = (props) => {
           </div>
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 6
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -174,8 +183,8 @@ const AddBlog = (props) => {
           </div>
           <div
             className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 7
-                ? "bg-[#08345B] text-[white]"
-                : "bg-[#E1ECFF]"
+              ? "bg-[#08345B] text-[white]"
+              : "bg-[#E1ECFF]"
               } `}
             onClick={() => {
               setData((prevState) => {
@@ -199,10 +208,10 @@ const AddBlog = (props) => {
               let imageReader = new FileReader();
               imageReader.onload = () => {
                 setData((prevState) => {
-                  return { ...prevState, image_data: imageReader.result }
-                })//base64encoded string
+                  return { ...prevState, image_data: imageReader.result };
+                }); //base64encoded string
               };
-              imageReader.readAsDataURL(e.target.files[0])
+              imageReader.readAsDataURL(e.target.files[0]);
               setPreviewImage((prevState) => {
                 return {
                   ...prevState,
