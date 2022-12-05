@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CiUser } from 'react-icons/ci';
 import {
     Box,
@@ -22,6 +22,7 @@ const Blog = (prop) => {
     const { user_id, category_id, post_id, title, content, image_id, image_data, date, users } =
         prop;
     let user = users.find((x) => x.user_id === user_id);
+    const navigate = useNavigate();
 
     // const [imageURL, setImageURL] = useState("");
     // useEffect(() => {
@@ -38,6 +39,7 @@ const Blog = (prop) => {
     //   };
     //   fetchImage();
     // });
+
 
     return (
         <>
@@ -58,14 +60,12 @@ const Blog = (prop) => {
                     {" "}
                     <Circle size="40px" mr="8px"><Image src={user.profile_photo == null ? './defphoto.png' : user.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
                     <Box display='flex' flexDirection='column'>
-                        <Heading fontWeight='medium' fontSize='lg'>{user.name}</Heading>
-                        <Heading fontWeight='medium' fontSize='lg'>@{user.username}</Heading>
-
+                        <Heading border="2px" borderColor='white' fontWeight='medium' fontSize='lg' _hover={{ borderBottomColor: "blue", color: "blue" }}><Link to={"/account/" + user.username}>{user.name}</Link></Heading>
+                        <Heading border="2px" borderColor='white' fontWeight='medium' fontSize='lg'>@{user.username}</Heading>
                     </Box>
-
                 </Box>
                 <Image
-                    // h={["5em", "15em", "25em", "25em", "25em", "30em"]}
+                    h={["5em", "15em", "25em", "30em", "30em", "35em"]}
                     src={image_data}
                 ></Image>
                 <Heading fontWeight="normal" textAlign="start" m="5px">

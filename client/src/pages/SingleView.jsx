@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { BiCommentDots } from "react-icons/bi";
@@ -106,8 +106,8 @@ const SingleView = () => {
                         <Box display='flex' flexDirection='row'>
                             <Circle size="40px" mr="8px"><Image src={user.profile_photo == null ? './defphoto.png' : user.profile_photo} borderRadius='100px' mt='3px'></Image></Circle>
                             <Box display='flex' flexDirection='column'>
-                                <Heading fontWeight='medium' fontSize='lg'>{user.name}</Heading>
-                                <Heading fontWeight='medium' fontSize='lg'>@{user.username}</Heading>
+                                <Heading border="2px" borderColor='#ebebeb' fontWeight='medium' fontSize='lg' _hover={{ borderBottomColor: "blue", color: "blue" }}><Link to={"/account/" + user.username}>{user.name}</Link></Heading>
+                                <Heading border="2px" borderColor='#ebebeb' fontWeight='medium' fontSize='lg' >@{user.username}</Heading>
                             </Box>
                         </Box>
                         <Box display='flex' flexDirection='column'>
@@ -143,7 +143,7 @@ const SingleView = () => {
                         {postcomment.length == 0 ? <><Box m='2rem'>No Comments</Box></> : postcomment.map((x) => {
 
                             const usertemp = users.filter((z) => z.user_id == x.user_id);
-                            console.log("bruh", usertemp);
+
                             return <>
                                 {usertemp.map((gg) => {
                                     return (<Box display='flex' flexDirection='row' justifyContent='flex-start' w={['0em', '28em', '46em', '60em', '63em', '68em']} m='2rem'>
