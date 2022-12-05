@@ -70,7 +70,7 @@ const AddBlog = (props) => {
       <div className="">
         <input
           type="text"
-          className=" p-1 pl-2 w-full text-[2rem] font-Inconsolata font-[600] placeholder:text-[#696969] focus:outline-none"
+          className=" p-1 pl-2 text-ellipsis w-full text-[2rem] font-Inconsolata font-[600] placeholder:text-[#696969] focus:outline-none"
           placeholder="Title"
           onChange={(e) => {
             setData((prevState) => {

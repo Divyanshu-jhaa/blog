@@ -32,6 +32,9 @@ public class UserController {
         return "User Added Successfully";
     }
 
+    @GetMapping("/{username}")
+    public User getByUsername(@PathVariable String username){return userService.getByUsername(username);}
+
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@RequestBody User user, @PathVariable Integer id) {
         try {

@@ -21,8 +21,10 @@ const PostCard = (prop) => {
       <div className=" p-2 text-[1.5rem] font-[600] font-Inconsolata">
         {prop.data.title}
       </div>
-      <div className="">{prop.data.image_data !== "" && <img src={prop.data.image_data} />}</div>
-      <div className=" p-2">{prop.data.content}</div>
+      <div className="">
+        {prop.data.image_data !== "" && <img src={prop.data.image_data} />}
+      </div>
+      <div className="p-2">{prop.data.content}</div>
     </div>
   );
 };

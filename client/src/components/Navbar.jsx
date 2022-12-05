@@ -6,7 +6,9 @@ const Navbar = (props) => {
   let path = window.location.pathname;
   const navigate = useNavigate();
   return (
-    <div className="bg-[white] h-[3.5rem] flex flex-row items-center justify-between shadow sticky top-0">
+    <div
+      className={`bg-[white] h-[3.5rem] flex flex-row items-center justify-between shadow sticky top-0 ${props.className}`}
+    >
       <div className="w-fit">
         <Logo className="ml-1" />
       </div>
