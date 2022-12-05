@@ -12,4 +12,6 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<Blog,Integer> {
     @Query("FROM Blog WHERE user_id = :i ")
     public List<Blog> listSpecifiedBlog(@Param("i") int user_id);
+    @Query("FROM Blog WHERE username like %:i%  ")
+    public List<Blog> listBlogsByUsername(@Param("i") String username);
 }

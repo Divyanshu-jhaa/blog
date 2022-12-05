@@ -9,6 +9,7 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int post_id;
     private int user_id;
+    private String username;
     private int category_id;
 
     private String title;
@@ -26,9 +27,10 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(int post_id, int user_id, int category_id, String title, String content, String image_id, String image_data, String date) {
+    public Blog(int post_id, int user_id, String username, int category_id, String title, String content, String image_id, String image_data, String date) {
         this.post_id = post_id;
         this.user_id = user_id;
+        this.username = username;
         this.category_id = category_id;
         this.title = title;
         this.content = content;
@@ -51,6 +53,14 @@ public class Blog {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getCategory_id() {

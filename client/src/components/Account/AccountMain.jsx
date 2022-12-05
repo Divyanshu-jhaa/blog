@@ -7,8 +7,12 @@ import AccountEdit from "./AccountEdit";
 
 const AccountMain = () => {
   let { username } = useParams();
+  let incomingUsername = JSON.parse(
+    localStorage.getItem("loginState")
+  ).username;
   const [isFetched, setIsFetched] = useState(false);
   const [userDetails, setUserDetails] = useState({});
+  const [userPosts, setUserPosts] = useState([]);
   const [editState, setEditState] = useState({
     isChangeView: false,
     isUpdated: false,
@@ -39,8 +43,14 @@ const AccountMain = () => {
       let res = await axios.get(
         `http://localhost:8080/user/username/${username}`
       );
+      if (username !== incomingUsername) {
+        let res2 = await axios.get(
+          `http://localhost:8080/blog/username/${username}`
+        );
+        setUserPosts(res2.data);
+        console.log(res2.data);
+      }
       setUserDetails(res.data);
-      console.log(res.data);
       setIsFetched(true);
     };
     fetchData();
@@ -55,7 +65,11 @@ const AccountMain = () => {
             editSubmitHandler={editSubmitHandler}
           />
         ) : (
-          <AccountView userDetails={userDetails} editHandler={editHandler} />
+          <AccountView
+            userDetails={userDetails}
+            editHandler={editHandler}
+            userPosts={userPosts}
+          />
         )}
       </>
     );

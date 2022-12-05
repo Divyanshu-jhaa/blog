@@ -23,7 +23,7 @@ const Account = () => {
   }, [helperState]);
   return (
     <>
-      <div className="border border-black h-screen flex flex-col">
+      <div className=" h-screen flex flex-col">
         <Navbar stateHandler={helperStateHandler} />
         <AccountMain />
       </div>

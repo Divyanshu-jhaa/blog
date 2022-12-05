@@ -23,6 +23,9 @@ public class BlogController {
     @GetMapping("/{user_id}")
     public List<Blog> listSpecified(@PathVariable Integer user_id){return  blogService.listSpecified(user_id);}
 
+    @GetMapping("/username/{username}")
+    public List<Blog> listBlogByUsername(@PathVariable String username){return  blogService.ListBlogByUsername(username);}
+
     @PostMapping("/add")
     public String add(@RequestBody Blog blog){
         blogService.save(blog);

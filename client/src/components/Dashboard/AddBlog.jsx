@@ -11,6 +11,7 @@ const AddBlog = (props) => {
     image_id: "",
     image_data: "",
     user_id: props.userDetails.user_id,
+    username: props.userDetails.username,
     date: "",
   });
 
@@ -104,10 +105,11 @@ const AddBlog = (props) => {
         </div>
         <div className=" flex flex-row flex-wrap justify-center">
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 1
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 1
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 1 };
@@ -117,10 +119,11 @@ const AddBlog = (props) => {
             Technology
           </div>
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 2
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 2
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 2 };
@@ -130,10 +133,11 @@ const AddBlog = (props) => {
             Food
           </div>
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 3
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 3
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 3 };
@@ -143,10 +147,11 @@ const AddBlog = (props) => {
             Health and Fitness
           </div>
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 4
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 4
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 4 };
@@ -156,10 +161,11 @@ const AddBlog = (props) => {
             Lifestyle
           </div>
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 5
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 5
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 5 };
@@ -169,10 +175,11 @@ const AddBlog = (props) => {
             Photography
           </div>
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 6
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 6
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 6 };
@@ -182,10 +189,11 @@ const AddBlog = (props) => {
             Business
           </div>
           <div
-            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${data.category_id === 7
-              ? "bg-[#08345B] text-[white]"
-              : "bg-[#E1ECFF]"
-              } `}
+            className={`rounded w-fit p-1 px-2 font-[500] font-Inconsolata m-1 cursor-pointer ${
+              data.category_id === 7
+                ? "bg-[#08345B] text-[white]"
+                : "bg-[#E1ECFF]"
+            } `}
             onClick={() => {
               setData((prevState) => {
                 return { ...prevState, category_id: 7 };

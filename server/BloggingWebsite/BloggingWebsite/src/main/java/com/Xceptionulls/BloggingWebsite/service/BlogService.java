@@ -25,5 +25,6 @@ public class BlogService {
     }
 
     public List<Blog> listSpecified(Integer user_id){return blogRepository.listSpecifiedBlog(user_id);}
+    public List<Blog> ListBlogByUsername(String username){return blogRepository.listBlogsByUsername(username);}
 
 }
