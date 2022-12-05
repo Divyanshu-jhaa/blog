@@ -22,6 +22,7 @@ public class UserService {
      public void delete(Integer id){
         userRepository.deleteById(id);
      }
+
     public User getByUsername(String username){return userRepository.getUserByUsername(username);}
 
 }

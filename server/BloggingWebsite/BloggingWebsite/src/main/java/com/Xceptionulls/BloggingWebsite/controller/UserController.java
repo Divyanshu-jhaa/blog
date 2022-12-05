@@ -26,14 +26,18 @@ public class UserController {
     {
         return userService.get(id);
     }
+
+    @GetMapping("/username/{username}")
+    public User getOneByUsername(@PathVariable String username)
+    {
+        return userService.getByUsername(username);
+    }
     @PostMapping("/add")
     public String add(@RequestBody User user) {
         userService.save(user);
         return "User Added Successfully";
     }
 
-    @GetMapping("/{username}")
-    public User getByUsername(@PathVariable String username){return userService.getByUsername(username);}
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@RequestBody User user, @PathVariable Integer id) {

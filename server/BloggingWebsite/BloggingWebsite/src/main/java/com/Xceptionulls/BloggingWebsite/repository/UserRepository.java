@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {
-    @Query("FROM User WHERE username = :i ")
+    @Query("FROM User WHERE username like %:i% ")
     public User getUserByUsername(@Param("i") String username);
-
 }
