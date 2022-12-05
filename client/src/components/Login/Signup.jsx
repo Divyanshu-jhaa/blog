@@ -17,6 +17,7 @@ const Signup = (props) => {
     email: "",
     profile_photo:
       "https://aniyuki.com/wp-content/uploads/2022/06/aniyuki-anime-profile-picture-63.jpg",
+    profile_bio: "This is the place where you put in your oneline bio",
   });
   console.log(data.user_id);
   const registerHandler = async () => {

@@ -38,7 +38,11 @@ const Navbar = (props) => {
             path === "/account" ? "font-[500]" : ""
           }`}
           onClick={() => {
-            navigate("/account");
+            navigate(
+              `/account/${
+                JSON.parse(localStorage.getItem("loginState")).username
+              }`
+            );
           }}
         >
           Account

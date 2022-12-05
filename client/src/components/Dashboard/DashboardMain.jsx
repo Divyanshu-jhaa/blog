@@ -66,7 +66,7 @@ const DashboardMain = () => {
                   </span>
                 </div>
                 <div className="text-center text-[0.8rem] italic p-0">
-                  Your oneline bio would go here...
+                  {userDetails.profile_bio}
                 </div>
               </div>
               <hr />
