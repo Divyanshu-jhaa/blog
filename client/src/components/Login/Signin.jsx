@@ -8,24 +8,25 @@ const Signin = (props) => {
   let stHelper = false;
   const loginHandler = async () => {
     if (data.username.length && data.password.length) {
-      const res = await axios.get("http://localhost:8080/user/getAll");
+      const res = await axios.get(
+        `http://localhost:8080/user/username/${data.username}`
+      );
       if (res.status === 200) {
-        res.data.forEach((item) => {
-          if (
-            item.username === data.username &&
-            item.password === data.password
-          ) {
-            stHelper = true;
-            localStorage.setItem(
-              "loginState",
-              JSON.stringify({
-                username: item.username,
-                user_id: item.user_id,
-              })
-            );
-            navigate("/dashboard", { replace: true });
-          }
-        });
+        if (
+          res.data.username === data.username &&
+          res.data.password === data.password
+        ) {
+          stHelper = true;
+          localStorage.setItem(
+            "loginState",
+            JSON.stringify({
+              username: res.data.username,
+              user_id: res.data.user_id,
+            })
+          );
+          navigate("/dashboard", { replace: true });
+        }
+
         if (stHelper === false) {
           console.log("wrong details");
         }
