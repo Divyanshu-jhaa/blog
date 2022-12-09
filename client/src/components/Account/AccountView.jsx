@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import settingIcon from "../assets/settings.png";
 import PostCard from "../Dashboard/PostCard";
 
 const AccountView = (prop) => {
   console.log(prop.userPosts);
+  const navigate = useNavigate();
   const { username } = useParams();
-  let incomingUsername = JSON.parse(
-    localStorage.getItem("loginState")
-  ).username;
+  if (localStorage.getItem("loginState") === null) {
+    navigate("/login", { replace: true });
+  }
 
   return (
     <div className="flex flex-grow justify-center items-center flex-col ">
       <div className="md:w-[50%] w-[90%] h-fit rounded bg-[white] shadow relative my-4">
-        {username === incomingUsername ? (
+        {username ===
+        JSON.parse(localStorage.getItem("loginState")).username ? (
           <>
             <div
               className="absolute  top-0 right-0 m-2"
@@ -47,7 +49,7 @@ const AccountView = (prop) => {
           </div>
         </div>
       </div>
-      {username !== incomingUsername ? (
+      {username !== JSON.parse(localStorage.getItem("loginState")).username ? (
         <>
           <div className="md:w-[50%] w-[90%] h-fit flex flex-col font-[500]">
             {prop.userDetails.name}'s Blog History

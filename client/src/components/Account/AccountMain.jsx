@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingAnimation from "../UI/LoadingAnimation";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AccountView from "./AccountView";
 import AccountEdit from "./AccountEdit";
 
 const AccountMain = () => {
   let { username } = useParams();
-  let incomingUsername = JSON.parse(
-    localStorage.getItem("loginState")
-  ).username;
   const [isFetched, setIsFetched] = useState(false);
   const [userDetails, setUserDetails] = useState({});
   const [userPosts, setUserPosts] = useState([]);
@@ -39,6 +36,9 @@ const AccountMain = () => {
 
   useEffect(() => {
     let localStorageData = JSON.parse(localStorage.getItem("loginState"));
+    let incomingUsername = JSON.parse(
+      localStorage.getItem("loginState")
+    ).username;
     const fetchData = async () => {
       let res = await axios.get(
         `http://localhost:8080/user/username/${username}`
